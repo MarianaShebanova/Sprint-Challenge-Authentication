@@ -11,7 +11,7 @@ describe('server', function () {
         it('register', function (done) {
             request(server)
                 .post('/api/auth/register')
-                .send({ username: 'john', password: "123" })
+                .send({ username: 'john', password: "123" , email: "email"})
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(201)
@@ -25,7 +25,8 @@ describe('server', function () {
             // register user 1
             request(server)
                 .post('/api/auth/register')
-                .send({ username: 'john', password: "123" })
+                .send({
+                    username: 'john', password: "123", email: "email" })
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(201)
@@ -37,7 +38,7 @@ describe('server', function () {
             // register user with the same name
             request(server)
                 .post('/api/auth/register')
-                .send({ username: 'john', password: "456" })
+                .send({ username: 'john', password: "456", email: "email"})
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(500)
@@ -51,7 +52,7 @@ describe('server', function () {
             // register user
             request(server)
                 .post('/api/auth/register')
-                .send({ username: 'john', password: "123" })
+                .send({ username: 'john', password: "123", email: "email"})
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(201)
@@ -63,7 +64,7 @@ describe('server', function () {
             // login with proper credentials
             request(server)
                 .post('/api/auth/login')
-                .send({ username: 'john', password: "123" })
+                .send({ email: 'john', password: "123" })
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(200)
@@ -84,7 +85,7 @@ describe('server', function () {
         it('login', function (done) {
             request(server)
                 .post('/api/auth/login')
-                .send({ username: 'john', password: "123" })
+                .send({ email: 'john', password: "123" })
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(401)
@@ -96,7 +97,7 @@ describe('server', function () {
             // register user 1
             request(server)
                 .post('/api/auth/register')
-                .send({ username: 'john', password: "123" })
+                .send({ username: 'john', password: "123", email: "email" })
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(201)
@@ -108,7 +109,7 @@ describe('server', function () {
             // login with wrong credentials
             request(server)
                 .post('/api/auth/login')
-                .send({ username: 'john', password: "456" })
+                .send({ email: 'john', password: "456" })
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(401)
@@ -120,7 +121,7 @@ describe('server', function () {
             // login with proper credentials
             request(server)
                 .post('/api/auth/login')
-                .send({ username: 'john', password: "123" })
+                .send({ email: 'john', password: "123" })
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)
                 .expect(401)
