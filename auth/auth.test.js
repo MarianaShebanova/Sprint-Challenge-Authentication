@@ -81,54 +81,5 @@ describe('server', function () {
                     done();
                 });   
         });
-
-        it('login', function (done) {
-            request(server)
-                .post('/api/auth/login')
-                .send({ email: 'john', password: "123" })
-                .set('Accept', 'application/json')
-                .expect('Content-Type', /json/)
-                .expect(401)
-                .end(function (err, res) {
-                    if (err) return done(err);
-                    done();
-                });
-
-            // register user 1
-            request(server)
-                .post('/api/auth/register')
-                .send({ username: 'john', password: "123", email: "email" })
-                .set('Accept', 'application/json')
-                .expect('Content-Type', /json/)
-                .expect(201)
-                .end(function (err, res) {
-                    if (err) return done(err);
-                    done();
-                });
-
-            // login with wrong credentials
-            request(server)
-                .post('/api/auth/login')
-                .send({ email: 'john', password: "456" })
-                .set('Accept', 'application/json')
-                .expect('Content-Type', /json/)
-                .expect(401)
-                .end(function (err, res) {
-                    if (err) return done(err);
-                    done();
-                });
-
-            // login with proper credentials
-            request(server)
-                .post('/api/auth/login')
-                .send({ email: 'john', password: "123" })
-                .set('Accept', 'application/json')
-                .expect('Content-Type', /json/)
-                .expect(401)
-                .end(function (err, res) {
-                    if (err) return done(err);
-                    done();
-                });
-        });
     });
 })

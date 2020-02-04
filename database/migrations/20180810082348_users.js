@@ -8,7 +8,7 @@ exports.up = function (knex) {
             .notNullable()
             .unique();
         users.string('password', 255).notNullable();
-        users.string('email', 255).notNullable();
+        users.string('email', 255).notNullable().unique();
     })
     .createTable('projects', tbl => {
         tbl.increments();
@@ -20,7 +20,7 @@ exports.up = function (knex) {
         tbl.text('image');
         tbl.text('public');
         tbl.integer('amount');
-        tbl.integer('email');
+        tbl.text('email');
         tbl.integer('user_id')
             .unsigned()
             .notNullable()

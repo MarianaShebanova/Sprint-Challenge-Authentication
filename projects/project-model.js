@@ -14,7 +14,9 @@ function find() {
 }
 
 function findById(id) {
-    return db('projects').where({ id: Number(id) });
+    return db('projects')
+        .where({ id })
+        .first();
 }
 
 async function add(project) {

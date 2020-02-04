@@ -10,7 +10,8 @@ describe('users model', function () {
 
         it('adds the new user to the db', async function () {
             await Users.add({ username: 'sam', 
-                              password : "password" });
+                              password : "password",
+                              email : "email" });
             const users = await db('users');
             expect(users).toHaveLength(1);
         })
@@ -25,7 +26,8 @@ describe('users model', function () {
         it('adds the new user to the db', async function () {
             await Users.add({
                 username: 'sam',
-                password: "password"
+                password: "password",
+                email: "email"
             });
             const users = await Users.find();
             expect(users).toHaveLength(1);
@@ -41,9 +43,10 @@ describe('users model', function () {
         it('adds the new user to the db', async function () {
             await Users.add({
                 username: 'sam',
-                password: "password"
+                password: "password",
+                email: "email"
             });
-            const users = await Users.findBy({username: 'sam'});
+            const users = await Users.findBy({ email: 'email'});
             expect(users).toHaveLength(1);
         })
 
@@ -57,7 +60,8 @@ describe('users model', function () {
         it('adds the new user to the db', async function () {
             let id = await Users.add({
                 username: 'sam',
-                password: "password"
+                password: "password",
+                email: "email"
             });
             const users = await Users.findById(id);
             expect(users.username).toBe("sam");
@@ -73,7 +77,8 @@ describe('users model', function () {
         it('adds the new user to the db', async function () {
            let id = await Users.add({
                 username: 'sam',
-                password: "password"
+                password: "password",
+               email: "email"
             });
             await Users.remove(id);
             const users = await db('users');
@@ -90,11 +95,12 @@ describe('users model', function () {
         it('adds the new user to the db', async function () {
             let id = await Users.add({
                 username: 'sam',
-                password: "password"
+                password: "password",
+                email: "email"
             });
-            await Users.update(id, {username: "mshe"});
+            await Users.update(id, { email: "mshe"});
             const users = await Users.findById(id);
-            expect(users.username).toBe("mshe");
+            expect(users.email).toBe("mshe");
         })
     })
 })
