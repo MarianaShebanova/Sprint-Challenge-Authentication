@@ -43,5 +43,6 @@ server.use('/api/auth', authRouter);
 server.use('/api/jokes', authenticate, jokesRouter);
 server.use('/api/users', usersRouter);
 server.use('/api/projects', projectsRouter);
+server.use('/api/crud', authenticate, projectsRouter);
 
 module.exports = server;

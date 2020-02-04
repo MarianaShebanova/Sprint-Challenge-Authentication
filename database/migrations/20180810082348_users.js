@@ -20,6 +20,7 @@ exports.up = function (knex) {
         tbl.text('image');
         tbl.text('public');
         tbl.integer('amount');
+        tbl.integer('email');
         tbl.integer('user_id')
             .unsigned()
             .notNullable()
