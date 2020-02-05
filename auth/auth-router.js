@@ -51,7 +51,7 @@ router.post("/login",
 function signedToken(user) {
     const payload = {
         subject: user.id,
-        username: user.username,
+        username: user.email,
     };
 
     const secret = process.env.JWT_SECRET || "stay secret";
